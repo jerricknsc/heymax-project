@@ -4,16 +4,16 @@ const sequelize = require('./ConnectionManager'); // Import sequelize instance
 // Define the User model
 const User = sequelize.define('User', {
     username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
+        type: DataTypes.STRING(255),
         primaryKey: true,
     },
     points: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         defaultValue: 0,
     },
+}, {
+    tableName: 'User', // Matches SQL table name
+    timestamps: false, // Disables `createdAt` and `updatedAt` fields
 });
 
 module.exports = User;
