@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import Loading from '@/components/Loading.vue';
+
 const router = useRouter();
 
 // FOR FIREBASE
@@ -19,6 +21,7 @@ const fileInput = ref(null);
 const image = ref(null); // File to upload
 const imageData = ref(null); // Preview image
 const isLoading = ref(false);
+const imageURL = ref('')
 
 // Trigger file upload input
 function triggerFileUpload() {
@@ -47,18 +50,19 @@ async function handleScanImage() {
             const timestamp = new Date().toISOString();
             const imageRef = storageRef(storage, `images/${timestamp}_${image.value.name}`);
             await uploadBytes(imageRef, image.value); // Upload image
-            const imageURL = await getDownloadURL(imageRef); // Get Firebase URL
-
-            console.log(imageURL);
+            imageURL.value = await getDownloadURL(imageRef); // Get Firebase URL
 
             // Extract book info from the image
-            await extractImageInfo(imageURL);
+            await extractImageInfo(imageURL.value);
+
         } else {
             alert('No image selected!');
         }
-    } catch (error) {
+    }
+    catch (error) {
         console.error('Error uploading image:', error);
-    } finally {
+    }
+    finally {
         isLoading.value = false;
     }
 }
@@ -74,22 +78,48 @@ async function extractImageInfo(imageURL) {
 
     // Assuming response contains book information
     const bookInfo = res.data
-    console.log(bookInfo)
 
     // Auto-fill title and author from the response
     title.value = bookInfo.title || '';
     author.value = bookInfo.author || '';
-    genre.value = bookInfo.genre || ''; 
-    price.value = bookInfo.price || ''; 
+    genre.value = bookInfo.genre || '';
+    price.value = bookInfo.price || '';
 }
 
-async function handleListBook(title, genre) {
-    
+async function handleListBook() {
+    isLoading.value = true
+
+    try {
+        const res = await axiosInstance({
+            method: 'post',
+            url: '/listings/add',
+            data: {
+                username: sessionStorage.getItem("username"),
+                url: imageURL.value,
+                bookGenre: genre.value,
+                bookTitle: title.value,
+                price: price.value,
+                author: author.value
+            }
+        });
+
+        router.push('/browse')
+    }
+    catch (error) {
+        console.error(error);
+    }
+    finally{
+        isLoading.value = false
+    }
 }
 
 </script>
 
 <template>
+    <div v-if="isLoading" class="absolute">
+        <Loading />
+    </div>
+
     <div class="flex flex-col items-center justify-center min-h-screen p-4">
         <!-- Title -->
         <h1 class="text-2xl font-bold text-gray-800 mb-6"> List A Book! </h1>
@@ -110,7 +140,7 @@ async function handleListBook(title, genre) {
             <button
                 class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 @click="handleScanImage" :disabled="isLoading">
-                {{ isLoading ? 'Reading image...' : 'Scan Image' }}
+                Scan Image
             </button>
         </div>
 

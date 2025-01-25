@@ -22,7 +22,6 @@ async function fetchLikedBooks() {
         }
     });
 
-    console.log(res.data);
     likedBooks.value = res.data;
 }
 
@@ -32,7 +31,7 @@ async function fetchListings() {
         method: 'get',
         url: '/listings/get-all',
     });
-    console.log(res.data);
+
     listings.value = res.data;
 }
 
@@ -92,13 +91,15 @@ function setFilter(filter) {
             class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <div v-for="(listing, index) in filteredListings()" :key="listing.id"
                 class="bg-white rounded-lg shadow-lg overflow-hidden">
+                
                 <!-- Book Image -->
-                <img :src="`/images/book-${(index % 5) + 1}.jpg`" class="w-full h-64 object-cover" />
+                <img :src="listing.url" class="w-full h-64 object-cover" />
 
                 <!-- Book Details -->
                 <div class="p-4 space-y-1">
                     <h2 class="text-xl font-semibold text-gray-800">{{ listing.bookTitle }}</h2>
-                    <p class="text-sm text-gray-600">{{ listing.bookGenre }}</p>
+                    <h2 class="text-md font-semibold text-gray-800"> By {{ listing.author }}</h2>
+                    <p class="text-sm text-gray-600"> <strong> Genre: </strong> {{ listing.bookGenre }}</p>
                     <p class="text-sm text-gray-600 italic">{{ listing.username }}</p>
                     <p class="mt-2 text-lg font-semibold text-gray-900">${{ listing.price }}</p>
 

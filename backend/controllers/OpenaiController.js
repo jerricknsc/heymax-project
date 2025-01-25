@@ -14,7 +14,6 @@ async function getBookInfo(req, res){
     const imageURL = req.body.imageURL
     // const imageURL = "https://firebasestorage.googleapis.com/v0/b/test-5a8ff.appspot.com/o/images%2F2025-01-25T14%3A45%3A50.462Z_2025-01-25%2021.08.53.jpg?alt=media&token=e8cb4c60-b958-4d74-8476-1079e6a2eb40"
 
-    console.log(imageURL)
     let bookInfo = await readImage(imageURL)
     bookInfo = await callGoogleAPI(bookInfo)
 

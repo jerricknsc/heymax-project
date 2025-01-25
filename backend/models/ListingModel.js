@@ -27,6 +27,10 @@ const Listing = sequelize.define('Listing', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
+    author: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+    },
 }, {
     tableName: 'Listing',
     timestamps: false,

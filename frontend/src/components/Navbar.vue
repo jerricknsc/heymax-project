@@ -22,7 +22,7 @@ import { RouterLink } from 'vue-router';
                     <i class="pi pi-plus"></i>
                     <div >Sell</div>
                 </RouterLink>
-                <RouterLink to="/chats" class="text-center hover:text-gray-500 cursor-pointer">
+                <RouterLink class="text-center hover:text-gray-500 cursor-pointer">
                     <i class="pi pi-comments"></i>
                     <div>Chats</div>
                 </RouterLink>

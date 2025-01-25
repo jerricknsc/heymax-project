@@ -57,4 +57,27 @@ async function findLikedBooks(req, res) {
     }
 }
 
-module.exports = { getAllUsers, addUser, findLikedBooks }; // Export controller functions
+async function getUserByUsername(req, res) {
+    const { username } = req.query;  // Get the username from the URL parameters
+
+    console.log(username)
+
+    try {
+        // Find the user by username
+        const user = await User.findOne({ where: { username }});
+
+        // If the user is not found, return an error
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Return the user data (excluding password, etc., for security)
+        return res.status(200).json(user);
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Unable to get user' });
+    }
+}
+
+module.exports = { getAllUsers, addUser, findLikedBooks, getUserByUsername }; // Export controller functions

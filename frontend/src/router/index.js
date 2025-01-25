@@ -3,6 +3,7 @@ import PostPage from '../pages/PostPage.vue'
 import LoginPage from '@/pages/LoginPage.vue'
 import BrowsePage from '@/pages/BrowsePage.vue'
 import SellingPage from '@/pages/SellingPage.vue'
+import ProfilePage from '@/pages/ProfilePage.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,11 @@ const router = createRouter({
             path: '/sell',
             name: 'sell',
             component: SellingPage,
+        },
+        {
+            path: '/profile',
+            name: 'profile',
+            component: ProfilePage,
         },
     ],
 })
