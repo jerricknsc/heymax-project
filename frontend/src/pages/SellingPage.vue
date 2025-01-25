@@ -103,7 +103,7 @@ async function handleListBook() {
             }
         });
 
-        router.push('/browse')
+        router.push('/profile')
     }
     catch (error) {
         console.error(error);
