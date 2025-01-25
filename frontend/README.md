@@ -1,29 +1,56 @@
-# vue-project
+# heymax book app
 
-This template should help get you started developing with Vue 3 in Vite.
+## Table of Contents
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
 
-## Recommended IDE Setup
+## Technologies Used
+- Vue.js
+- Express.js
+- MySQL
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Installation
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/jerricknsc/heymax-project.git
 
-## Customize configuration
+    ```
+    Make sure you are in the frontend directory
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+2. Navigate to the backend directory
+    ```sh
+    cd backend
 
-## Project Setup
+    ```
 
-```sh
-npm install
-```
+3. Set up the database:
+    ```sh
+    # Assuming you have MySQL installed and running
+    run heymax.sql script in your MySQL Workbench environment
 
-### Compile and Hot-Reload for Development
+    ```
 
-```sh
-npm run dev
-```
+4. Install the dependencies:
+    ```sh
+    npm install
+    ```
 
-### Compile and Minify for Production
+5. Start the backend server:
+    ```sh
+      npm run dev
+    ```
 
-```sh
-npm run build
-```
+6. Open another terminal and navigate to the frontend directory:
+    ```sh
+      cd frontend
+    ```
+
+7. Install the dependencies:
+    ```sh
+    npm install
+    ```
+
+8. Start the backend server:
+    ```sh
+      npm run dev
+    ```
