@@ -17,16 +17,16 @@
     ```
     Make sure you are in the frontend directory
 
-2. Navigate to the backend directory
-    ```sh
-    cd backend
-
-    ```
-
-3. Set up the database:
+2. Set up the database:
     ```sh
     # Assuming you have MySQL installed and running
     run heymax.sql script in your MySQL Workbench environment
+
+    ```
+
+3. Navigate to the backend directory
+    ```sh
+    cd backend
 
     ```
 
