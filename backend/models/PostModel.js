@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('./ConnectionManager');
-const User = require('./user');
+const User = require('./UserModel');
 
 const Post = sequelize.define('Post', {
     postID: {
@@ -11,7 +11,7 @@ const Post = sequelize.define('Post', {
         type: DataTypes.STRING(255),
         allowNull: false,
     },
-    url: {
+    review: {
         type: DataTypes.STRING(500),
         allowNull: false,
     },

@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('./ConnectionManager');
-const User = require('./user');
+const User = require('./UserModel');
 
 const Listing = sequelize.define('Listing', {
     listingID: {
