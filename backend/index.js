@@ -4,6 +4,8 @@ const sequelize = require('./models/ConnectionManager'); // Import the Sequelize
 const userRoutes = require('./routers/UserRouter'); // Import the user routes
 const postRoutes = require('./routers/PostRouter'); // Import the user routes
 const likeRoutes = require('./routers/LikesRouter'); // Import the user routes
+const listingRoutes = require('./routers/ListingRouter'); // Import the user routes
+const openaiRoutes = require('./routers/OpenaiRouter'); // Import the user routes
 
 
 const app = express();
@@ -17,6 +19,8 @@ app.use(express.json()); // Middleware to parse JSON bodies
 app.use('/users', userRoutes); 
 app.use('/posts', postRoutes);
 app.use('/likes', likeRoutes);
+app.use('/listings', listingRoutes);
+app.use('/openai', openaiRoutes);
 
 // Sync database
 sequelize.sync({ force: false }) // Set to true if you want to drop and recreate tables

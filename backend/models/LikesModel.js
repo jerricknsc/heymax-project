@@ -11,6 +11,8 @@ const Likes = sequelize.define('Likes', {
             model: Post,
             key: 'postID',
         },
+        primaryKey: true,  // Mark postID as part of the composite primary key
+        autoIncrement: false,  // Disable auto-increment (if any)
     },
     username: {
         type: DataTypes.STRING(255),
@@ -19,6 +21,8 @@ const Likes = sequelize.define('Likes', {
             model: User,
             key: 'username',
         },
+        primaryKey: true,  // Mark username as part of the composite primary key
+        autoIncrement: false,  // Disable auto-increment (if any)
     },
 }, {
     tableName: 'Likes',
